@@ -1,7 +1,7 @@
-[staging]
+[stag]
 192.168.10.10
 
-[production]
+[prod]
 192.168.10.11
 
 [all:vars]
