@@ -1,0 +1,18 @@
+---
+
+- name: Copy private key
+  copy:
+      src: "{{ keyfile }}"
+      dest: "~/.ssh/keyfile"
+      mode: 0400
+
+- name: Git Clone
+  git:
+      repo: "git clone git@github.com:sanjeev3d/Testrepo.git"
+      dest: "/var/www/html"
+      update : yes
+      clone : yes
+      version: "{{ branch }}"
+      accept_hostkey: yes
+      key_file: "~/.ssh/keyfile"
+      force: yes
