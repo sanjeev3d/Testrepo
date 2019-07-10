@@ -5,4 +5,4 @@
 192.168.10.11
 
 [all:vars]
-ansible_python_interpreter=/usr/bin/python3
+ansible_python_interpreter=/usr/bin/python3.6
