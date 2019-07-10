@@ -10,7 +10,7 @@ node {
 
 	if (gitBranch == 'origin/staging'){
 		stage('updating staging server'){
-			withCredential([
+			withCredentials([
 				sshUserPrivateKey(credentialsId: 'staging-ssh-cred', keyFileVariable: 'SSHPASS'),
 				file(credentialsId: 'git-cred', variable: 'GITCRED')]){
 				 ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-cred', disableHostKeyChecking: true, inventory: './ansible-code/inventory',limit: 'staging', extras: '-e branch="staging" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
@@ -20,7 +20,7 @@ node {
 
 	if (gitBranch == 'origin/master'){
 		stage('updating production server'){
-			withCredential([
+			withCredentials([
 				sshUserPrivateKey(credentialsId: 'staging-ssh-cred', keyFileVariable: 'SSHPASS'),
 				file(credentialsId: 'git-cred', variable: 'GITCRED')]){
 				 ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-cred', disableHostKeyChecking: true, inventory: './ansible-code/inventory',limit: 'production', extras: '-e branch="master" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
