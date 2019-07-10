@@ -13,7 +13,7 @@ node {
 			withCredential([
 				sshUserPrivateKey(credentialsId: 'staging-ssh-cred', keyFileVariable: 'SSHPASS'),
 				file(credentialsId: 'git-cred', variable: 'GITCRED')]){
-				ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-stag', disableHostKeyChecking: true, inventory: './ansible-code/inventory', extras: '-e branch="staging" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
+				ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-cred', disableHostKeyChecking: true, inventory: './ansible-code/inventory', limit: 'staging' extras: '-e branch="staging" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
 			}
 		}
 	}
@@ -23,7 +23,7 @@ node {
 			withCredential([
 				sshUserPrivateKey(credentialsId: 'staging-ssh-cred', keyFileVariable: 'SSHPASS'),
 				file(credentialsId: 'git-cred', variable: 'GITCRED')]){
-				ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-stag', disableHostKeyChecking: true, inventory: './ansible-code/inventory', extras: '-e branch="master" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
+				ansiblePlaybook become: true, colorized: true, credentialsId: 'staging-ssh-cred', disableHostKeyChecking: true, inventory: './ansible-code/inventory', limit: 'production' extras: '-e branch="master" -e keyfile="${GITCRED}"', playbook: './ansible-code/bitclone.yml'
 			}
 		}
 	}
