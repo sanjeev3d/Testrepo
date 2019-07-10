@@ -4,7 +4,7 @@ node {
 
 	try {
 
-	stag('checkout'){
+	stage('checkout'){
 		checkout scm
 	}
 
