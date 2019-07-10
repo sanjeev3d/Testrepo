@@ -2,6 +2,8 @@ node {
 	gitrepo = checkout scm
 	gitBranch = gitrepo.GIT_BRANCH
 
+	try {
+		
 	stag('checkout'){
 		checkout scm
 	}
